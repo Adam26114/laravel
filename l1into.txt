@@ -1,0 +1,55 @@
+=> MVC Framework (Model,View,Controller)
+
+= Model
+it's working with database (Select,Insert,Update,Delete)
+
+
+= View
+A view is the part of the application that repersents the presentation of data HTML,CSS codes for 
+
+= Controller
+the Controller receives inpot from the user , process the reques(GET,POST,PUT,DELETE)
+
+
+---
+
+Version Needed
+
+php 8.1^
+
+composer 2.5^
+
+php -v
+php --version
+
+
+---------------------------------
+
+=> Installation 
+
+Method1
+=======
+composer create-project laravel/laravel project name
+Method2
+=======
+composer global require laravel/installer
+laravel new projectname
+
+----------------------------------------------------
+
+=> Folder and File Stucture 
+
+app > Http > Controller
+app > Http > Models
+app > database > migrations
+app > public ( for public custom css / custom js)
+resources > views
+routes > web.php (or) routes > api.php
+. env
+
+----------------------------------------------------
+
+=> Run Project 
+php artisan server
+
+20IN
