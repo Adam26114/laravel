@@ -50,6 +50,7 @@ routes > web.php (or) routes > api.php
 ----------------------------------------------------
 
 => Run Project 
-php artisan server
+php artisan serve
+
 
 20IN
