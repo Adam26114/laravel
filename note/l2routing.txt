@@ -1,0 +1,58 @@
+=> Route
+
+route > web.php (or) route > api.php
+
+
+=>Avaliable Router Methods (6)
+Route::get(uri,callback);
+Route::post(uri,callback);
+Route::put(uri,callback);
+Route::patch(uri,callback);
+Route::delete(uri,callback);
+Route::option(uri,callback);
+
+=>Basic Routing
+
+Route::get("/",fuction(){
+    return view("filename");
+});
+
+Route::get("/",fuction(){
+    return "Save Myanmar";
+});
+
+Route::get("/saya",fuction(){
+    return "Hay,Sayar Nya Kaung Lar";
+});
+
+
+(or)
+
+Route::view("about","aboutme");
+
+Route::view("/about/company",function(){
+    return view("aboutcompany");
+});
+
+
+=>Redirect
+
+=>Syntex
+
+Route::get(uri,function(){
+    return redirect("filename");
+});
+
+Route::get("contant",function(){
+    return redirect("about");
+});
+
+(or)
+
+=>Syntex
+
+Route::get("uri","filename");
+
+Route::get("contant","about");
+
+21RT

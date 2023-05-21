@@ -53,4 +53,18 @@ routes > web.php (or) routes > api.php
 php artisan serve
 
 
+=> Close Server
+php artisan down
+
+=> Redirect (when server down)
+php artisan down --redirect=/https://adam26114.github.io/ZweAungNaingPortfolio/
+
+=> Resume Project
+php artisan up
+
+.env
+app_Name=bookshop
+app_Name="book shop" စာလုံးနှစ်လုးဆ်ု ""
+
+
 20IN
