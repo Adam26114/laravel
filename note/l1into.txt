@@ -41,7 +41,7 @@ laravel new projectname
 
 app > Http > Controller
 app > Http > Models
-app > database > migrations
+app > database > migrations (table)
 app > public ( for public custom css / custom js)
 resources > views
 routes > web.php (or) routes > api.php

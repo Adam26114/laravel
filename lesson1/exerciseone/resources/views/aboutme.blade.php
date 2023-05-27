@@ -9,8 +9,10 @@
         <p>This is About Site</p>
 
         <ul>
-            <li><a href="javascript:void(0);">Hoome</a></li>
-            <li><a href="javascript:void(0);">About</a></li>
+            <li><a href="{{URL::to('/')}}">Home</a></li>
+            <li><a href="{{URL::to('/about')}}">About</a></li>
+            <li><a href="{{route('profiles')}}">Profile</a></li>
+
         </ul>
 
     </body>

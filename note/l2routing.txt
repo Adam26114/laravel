@@ -55,4 +55,25 @@ Route::get("uri","filename");
 
 Route::get("contant","about");
 
-21RT
+-------------------------------------------------------------------
+
+
+=> Route with Parameter
+
+=Singel Parameter
+
+Route::get('about/company/{staff}',function($staff){
+    return view('aboutcomapanystaff',['sf'=$staff]);
+});
+
+=Muti Parameter
+
+Route::get('about/company/{staff}/{city}',function($staff,$city){
+    return view('aboutcomapanystaffbycity',['sf'=>$staff,'ct'=>$city]);
+});
+
+
+=> Naming Route
+Route::get('profile',function(){
+    return view('profileme');
+})->name('profile');

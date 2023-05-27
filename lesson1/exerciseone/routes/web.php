@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// shotcut create
+use \App\Http\Controllers\studentsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +38,7 @@ Route::get("/sayhi",function(){
 
 // (or)
 
-Route::view("about","aboutme");
+Route::view("about","aboutme")->name('profiles');
 
 // Route::get("/sayhi",function(){
 //     return view("aboutcompany");
@@ -53,3 +56,50 @@ Route::view("/about/company","aboutcompany");
 // (or)
 
 Route::redirect("contant","about/company");
+
+
+Route::get("about/company/{staff}",function($staff){
+    return view("aboutcompanystaff",['sf'=>$staff]);
+});
+
+Route::get('about/company/{staff}/{city}',function($staff,$city){
+    return view('aboutcomapanystaffbycity',['sf'=>$staff,'ct'=>$city]);
+});
+
+
+Route::get('profile',function(){
+    return view('profileme');
+})->name('profiles');
+// route naming
+
+//students controller
+// first parameter controller path လမ်းကြောင်း
+// first parameter က function name
+// Route::get('/students',[\App\Http\Controllers\studentsController::class,'index'])->name('students.index');
+// Route::get('/students/show',[\App\Http\Controllers\studentsController::class,'show'])->name('students.show');
+// Route::get('/students/edit',[\App\Http\Controllers\studentsController::class,'edit'])->name('students.edit');
+
+
+// => Route::group()
+
+// Route::group(['prefix'=>'students/'],function(){
+
+//     Route::get('/',[\App\Http\Controllers\studentsController::class,'index'])->name('students.index');
+//     Route::get('/show',[\App\Http\Controllers\studentsController::class,'show'])->name('students.show');
+//     Route::get('/edit',[\App\Http\Controllers\studentsController::class,'edit'])->name('students.edit');
+
+// });
+
+// => Route -> name() group
+
+Route::name('students.')->group(function(){
+
+    // အပေါ်မှာ user နဲ့ ဘုံ ထုတ်လိုက်တာ
+    Route::get('students/',[studentsController::class,'index'])->name('index');
+    Route::get('students/show',[studentsController::class,'show'])->name('show');
+    Route::get('students/edit',[studentsController::class,'edit'])->name('edit');
+
+});
+
+
+//27Gp
