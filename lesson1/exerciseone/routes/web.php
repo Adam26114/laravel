@@ -116,3 +116,7 @@ Route::get('/staffsparty/{total}/{status}',[staffsController::class,'partytotalc
 
 Route::get('/employees',[employeesController::class,'index'])->name('employees.index');
 Route::get('/employees/show',[employeesController::class,'index'])->name('employees.show');
+Route::get('/employees/passingdataone',[employeesController::class,'passingdataone'])->name('employees.passingdataone');
+Route::get('/employees/passingdatatwo',[employeesController::class,'passingdatatwo'])->name('employees.passingdatatwo');
+
+
