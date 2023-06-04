@@ -8,7 +8,7 @@
 
         <p>This is Employees Data Two</p>
 
-        <h3>Hi there</h3>
+        <h3>Hi there {{$greeting}}</h3>
 
         @php
             echo "<pre>".print_r($students,true)."</pre>";
@@ -16,6 +16,12 @@
             echo $students[1]."<br/>";
             echo $students[2]."<br/>";
         @endphp
+
+        <ul>
+            @foreach ($students as $value)
+                <li><?php echo $value;?></li>
+            @endforeach
+        </ul>
 
     </body>
 </html>

@@ -29,6 +29,7 @@ class employeesController extends Controller
     }
 
     public function passingdatatwo(){
+        $greeting = "Have a nice day";
         $students = [
             "Honey Nway Oo",
             "Mandalay",
@@ -36,6 +37,6 @@ class employeesController extends Controller
         ];
 
         // dd($students);
-        return view('employees/datatwo',['students'=>$students]);
+        return view('employees/datatwo',["greeting"=>$greeting,'students'=>$students]);
     }
 }
