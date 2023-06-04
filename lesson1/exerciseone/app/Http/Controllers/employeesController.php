@@ -52,4 +52,21 @@ class employeesController extends Controller
 
         return view("employees/datathree")->with("greeting",$greeting)->with("students",$students);
     }
+
+    // Compact
+    public function passingdatafour(){
+
+        $greeting = "Have a nice day";
+        $students = [
+            "Honey Nway Oo",
+            "Mandalay",
+            "011111"
+        ];
+
+        // return view("employees/datafour",compact("greeting","students"));
+        // return view("employees/datafour",compact("greeting"),compact("students"));
+        // return view("employees/datafour",compact("greeting"))->with("students",$students);
+        // return view("employees/datafour",compact("greeting"))->with(compact("greeting","students"));
+        return view("employees/datafour",compact("greeting"))->with(compact("greeting"))->with(compact("students"));
+    }
 }
