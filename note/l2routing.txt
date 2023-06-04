@@ -77,3 +77,6 @@ Route::get('about/company/{staff}/{city}',function($staff,$city){
 Route::get('profile',function(){
     return view('profileme');
 })->name('profile');
+
+
+------------------------------------------------------------------

@@ -3,7 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 // shotcut create
-use \App\Http\Controllers\studentsController;
+use App\Http\Controllers\studentsController;
+
+use App\Http\Controllers\staffscontroller;
+
+use App\Http\Controllers\employeesController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -101,5 +107,12 @@ Route::name('students.')->group(function(){
 
 });
 
+Route::get('/staffs',[staffsController::class,'home'])->name('staffs.home');
+Route::get('/staffsparty',[staffsController::class,'party'])->name('staffs.party');
+Route::get('/staffsparty/{total}',[staffsController::class,'partytotal'])->name('staffs.total');
+Route::get('/staffsparty/{total}/{status}',[staffsController::class,'partytotalconfirm'])->name('staffs.status');
 
-//27Gp
+
+
+Route::get('/employees',[employeesController::class,'index'])->name('employees.index');
+Route::get('/employees/show',[employeesController::class,'index'])->name('employees.show');
