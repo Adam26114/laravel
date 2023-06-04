@@ -39,4 +39,17 @@ class employeesController extends Controller
         // dd($students);
         return view('employees/datatwo',["greeting"=>$greeting,'students'=>$students]);
     }
+
+    // with
+    public function passingdatathree(){
+
+        $greeting = "Have a nice day";
+        $students = [
+            "Honey Nway Oo",
+            "Mandalay",
+            "011111"
+        ];
+
+        return view("employees/datathree")->with("greeting",$greeting)->with("students",$students);
+    }
 }

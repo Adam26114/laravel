@@ -118,5 +118,6 @@ Route::get('/employees',[employeesController::class,'index'])->name('employees.i
 Route::get('/employees/show',[employeesController::class,'index'])->name('employees.show');
 Route::get('/employees/passingdataone',[employeesController::class,'passingdataone'])->name('employees.passingdataone');
 Route::get('/employees/passingdatatwo',[employeesController::class,'passingdatatwo'])->name('employees.passingdatatwo');
+Route::get('/employees/passingdatathree',[employeesController::class,'passingdatathree'])->name('employees.passingdatathree');
 
 
