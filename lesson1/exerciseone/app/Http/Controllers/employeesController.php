@@ -69,4 +69,43 @@ class employeesController extends Controller
         // return view("employees/datafour",compact("greeting"))->with(compact("greeting","students"));
         return view("employees/datafour",compact("greeting"))->with(compact("greeting"))->with(compact("students"));
     }
+
+
+    public function show(){
+        $data['employeedata'] = [
+            'name' => 'Aung Ko Ko',
+            'email' => 'aungkoko@gmail.com',
+            'phone' => '0123456'
+        ];
+        // printထုတ်တာ  dataတွေ caculate အောင် စစ်တာ
+        // dd($data);
+
+
+        return view('employees/show',$data);
+    }
+
+    public function edit(){
+        $data['employeedata'] = [
+            'name' => 'Aung Ko Ko',
+            'email' => 'aungkoko@gmail.com',
+            'phone' => '0123456'
+        ];
+        // printထုတ်တာ  dataတွေ caculate အောင် စစ်တာ
+        // dd($data);
+
+
+        // return view('employees/edit',compact("data"));
+    }
+
+    public function update(){
+        $data['employeedata'] = [
+            'name' => 'Aung Ko Ko',
+            'email' => 'aungkoko@gmail.com',
+            'phone' => '0123456'
+        ];
+
+
+        return view('employees/update',['employee' => $data('employeedata')]);
+    }
+
 }

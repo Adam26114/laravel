@@ -1,0 +1,3 @@
+=> Public Data Passing
+
+app > Provider >AppServicePrivider.php

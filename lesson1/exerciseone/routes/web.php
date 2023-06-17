@@ -9,7 +9,10 @@ use App\Http\Controllers\staffscontroller;
 
 use App\Http\Controllers\employeesController;
 
+use App\Http\Controllers\dashboardsController;
+use App\Http\Controllers\membersController;
 
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,10 +118,16 @@ Route::get('/staffsparty/{total}/{status}',[staffsController::class,'partytotalc
 
 
 Route::get('/employees',[employeesController::class,'index'])->name('employees.index');
-Route::get('/employees/show',[employeesController::class,'index'])->name('employees.show');
+// Route::get('/employees/show',[employeesController::class,'index'])->name('employees.show');
+Route::get('/employees/show',[employeesController::class,'show'])->name('employees.show');
 Route::get('/employees/passingdataone',[employeesController::class,'passingdataone'])->name('employees.passingdataone');
 Route::get('/employees/passingdatatwo',[employeesController::class,'passingdatatwo'])->name('employees.passingdatatwo');
 Route::get('/employees/passingdatathree',[employeesController::class,'passingdatathree'])->name('employees.passingdatathree');
 Route::get('/employees/passingdatafour',[employeesController::class,'passingdatafour'])->name('employees.passingdatafour');
+Route::get('/employees/edit',[employeesController::class,'edit'])->name('employees.edit');
+Route::get('/employees/update',[employeesController::class,'update'])->name('employees.update');
 
+Route::get('/dashboards',[dashboardsController::class,'index'])->name('dashboards.index');
+
+Route::get('/members',[membersController::class,'index'])->name('members.index');
 

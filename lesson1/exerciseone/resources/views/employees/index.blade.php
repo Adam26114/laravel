@@ -42,8 +42,12 @@
             <h3>You were wrong</h3>
         @endif
 
-
+        {{services}} {{$demo}}
     </body>
 </html>
+
+
+
+
 
 {{-- 28EN --}}

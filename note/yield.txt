@@ -1,0 +1,11 @@
+=> yield(,)
+
+php make artisan:controller dashboardsController
+
+
+
+@section
+@endsection
+
+@section
+@stop
