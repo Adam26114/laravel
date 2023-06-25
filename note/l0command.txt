@@ -19,3 +19,48 @@ php artisan route:list --method=get -r
 php artisan route:list --method=post
 
 
+=>List all file from database > migrations files
+php artisan migrate:status
+
+=>Undo migration
+php artisan migrate:rollback
+
+=>Check Migration Status
+php artisan migrate:status
+
+php artisan make:migration create_staffs_table --create="staffs"
+php artisan make:migration create_employees_table --create="employees"
+
+=>Undo migrate by step (selected table count to local)
+php artisan migrate:rollback --step=2
+
+
+=>Check before rollback table list
+php artisan migrate:rollback --pretend
+
+=>Delete all tables
+php artisan migrate:reset
+
+
+php artisan make:migration create_shoppers_table --create="shoppers"
+
+=>Delete all datas(auto rollback and auto migrate)
+php artisan migrate:refresh
+
+=>Delete all datas(auto rollback and auto migrate / selected table count to local by DESC)
+php artisan migrate:rollback --step=2
+
+
+=>Add new Columns   
+                    add_collumn name_to_table name_table
+php artisan make:migration add_city_to_shoppers_table --table=shoppers
+
+$tabel->string('city'); to add_city_to_shoppers_table
+php artisan migrate
+
+
+=>Sort Column
+php artisan migrate:rollback --pretend
+php artisan migrate:rollback
+
+18PT
