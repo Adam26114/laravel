@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phonenumbers');
-            $table->string('address');
+            $table->string('fullname');
+            $table->string('phonenumber');
             $table->timestamps();
         });
     }
@@ -25,9 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('shoppers', function (Blueprint $table) {
-            //
-            $table->string('city')->after('phonenumber');
-        });
+        Schema::dropIfExists('workers');
     }
 };

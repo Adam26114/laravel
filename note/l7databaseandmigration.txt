@@ -15,7 +15,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 
 mysql -u root -p
-Show database; 
+Show databases; 
 
 database > migrations 
 
@@ -43,6 +43,7 @@ $table->bigIncrements('id');
 $table->increments('id');
 $table->bigInteger('id');
 $table->unsignedInteger('id');
+$table->unsignedBigInteger('id');
 $table->smallInteger('votes');
 $table->binary('photo');
 $table->boolean('confirmed');
@@ -98,7 +99,7 @@ php artisan migrate:reset
                     add_collumn name_to_table name_table
 php artisan make:migration add_city_to_shoppers_table --table=shoppers
 
-$tabel->string('city'); to add_city_to_shoppers_table
+$table->string('city'); to add_city_to_shoppers_table
 php artisan migrate
 
 
@@ -108,11 +109,11 @@ php artisan migrate:rollback
 $table->string('city')->after('phonenumber'); to_add_city_to_shoppers_table
 
 
-php artisan make:migration add_city_to_employees_table             $table->string('city')->after('phonenumber');
-
-php artisan make:migration add_city_to_staffs_table --table=employees
+php artisan make:migration add_city_to_employees_table --table=employees
 $table->string('city')->after('phonenumber');
 
+
+=>Up Vs Down
 php artisan make:migration add_city_to_staffs_table --table=staffs
 $table->string('city')->after('phonenumber');
 =>down
@@ -126,6 +127,7 @@ php artisan migrate:migrate
 
 =>Drop Column
 php artisan make:migration remove_id_to_students_table --table=students
+=>Up
 $table->dropColumn('id');
 
 php artisan migrate
@@ -134,56 +136,41 @@ php artisan migrate:rollback --pretend
 php artisan migrate:rollback
 php artisan migrate:migrate
 
-
-
-
 php artisan make:migration remove_id_to_workers_table --table=workers
-=>up
+=>Up
 $table->dropColumn(['id','phonenumber']);
 =>down
 $table->id();
 $table->string('phonenumber')->after('fullname');
 
+
 php artisan migrate
 php artisan migrate:status
 php artisan migrate:rollback --pretend
 php artisan migrate:rollback
 php artisan migrate:migrate
+
 
 
 
 php artisan make:migration remove_id_to_staffs_table --table=staffs
-=>up
+=>Up
 
-
-        Note::hasColumn(table,columns)
+Note:: hasColumn(tabelname,columname)
 if(Schema::hasColumn('staffs','id')){
-    Schema::table('shoppers', function (Blueprint $table) {
+    Schema::table('staffs', function (Blueprint $table) {
         $table->dropColumn('id');
     });
 }
-
 =>down
-$table->string('id')->first();
+$table->id()->first();
+
 
 php artisan migrate
 php artisan migrate:status
 php artisan migrate:rollback --pretend
 php artisan migrate:rollback
 php artisan migrate:migrate
-
-
-php artisan migrate:rollback --pretend
-php artisan migrate:rollback
-
-=>down
-$table->id()->firsta();
-
-php artisan migrate
-php artisan migrate:rollback --pretend
-php artisan migrate:rollback
-
-
 
 
 =>Rename Column renameColumn(from,to)
@@ -203,8 +190,8 @@ php artisan migrate:rollback
 php artisan migrate
 
 
-=>Rename Column rename(from,to)
-php artisan make:migration rename_employees_to_customer --table=students
+=>Rename Table rename(from,to)
+php artisan make:migration rename_students_column --table=students
 =>up
 $table->renameColumn('phonenumber','phone');
 $table->renameColumn('address','city');
@@ -213,4 +200,120 @@ $table->renameColumn('phone','phonenumber');
 $table->renameColumn('city','address');
 
 
-24RN
+php artisan migrate
+php artisan migrate:statu
+php artisan migrate:rollback --pretend
+php artisan migrate:rollback
+php artisan migrate
+
+
+
+=>Rename table rename(from,to)
+php artisan make:migration rename_employees_to_customers_table --table=employees
+=>up
+Schema::rename('employees','customers');
+=>down
+Schema::rename('customers','employees');
+
+
+=>Default Value
+
+php artisan make:migration create_books_table --create="books"
+
+Schema::create('books', function (Blueprint $table) {
+    $table->increments('id');
+    $table->string('title');
+    $table->tinyInteger('status')->default('1');
+    $table->enum('copyright',['0','1'])->default('0');
+    $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP')); //timestamp not include s
+    $table->timestamp('updateed_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+});
+
+php artisan make:migration create_profiles_table --create="profiles";
+
+
+
+=>Crating Indexes
+
+$table->string('email')->unique();
+=Foreign Key Constraints
+
+php artisan make:migration create_authors_table --create="authors"
+php artisan make:migration create_types_table --create="types"
+php artisan make:migration create_posts_table --create="posts"
+
+=Foreign Key Constraints
+
+Method 1
+
+$table->unsignedBigInteger('user_id');
+$table->foreign('user_id')->references('id')->on('users');
+
+Method 2
+
+$table->foreignID('user_id')->constrained('users');
+
+
+
+Schema::create('author', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+
+Schema::create('types', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+
+
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('title')->unique();
+    $table->text('description');
+
+    $table->unsignedBigInteger('user_id');
+    $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
+    $table->foreignId('author_id')->constrained('authors')->onUpdate('cascade')->onDelete('cascade');
+
+    $table->year('year');
+
+    $table->unsignedBigInteger('type_id');
+    $table->foreign('type_id')->references('id')->on('types')->onUpdate('cascade')->onDelete('cascade');
+
+    $table->timestamps();
+});
+
+
+
+// => Data Inset From Route
+Route::get("/type/insert",function(){
+    DB::insert("INSERT INTO types(name) value(?)",["book"]);
+    return "Successfully Inserted";
+});
+
+
+Route::get("/type/insert",function(){
+    DB::insert("INSERT INTO types(name) value(?)",["pdf"]);
+    return "Successfully Inserted";
+});
+
+
+// Route::get("/type/read",function(){
+//     $results =  DB::select("SELECT * FROM types");
+//     // return var_dump($result);
+
+//     foreach ($results as $type) {
+//         echo $type->name . "<br/>";
+//     }
+// });
+
+
+Route::get("/type/read",function(){
+    $result =  DB::select("SELECT * FROM types WHERE id=?",[1]);
+    // return var_dump($result);
+
+    return $result;
+});

@@ -1,0 +1,23 @@
+=>Model
+=>Database Eloquent ORM (Object-Relationa Mapper)
+
+=>Generate Model Class (Model typical live in the app\Model dirctory and extends)
+=>Command line  (Model + Migration)
+
+php artisan make:model Articel --migration
+(or)
+php artisan make:model Articel -m
+
+
+------------------------------
+
+=> Usefull Keyword in Model
+
+=Table  Name
+proteed $table = 'articles';
+
+=Customize Timestamp
+php artisan model:show Article
+
+const CREATE_AT = "created_date" 
+const UPDATED_AT = "created_date"

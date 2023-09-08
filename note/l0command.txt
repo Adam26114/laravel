@@ -63,4 +63,13 @@ php artisan migrate
 php artisan migrate:rollback --pretend
 php artisan migrate:rollback
 
-18PT
+=>CRUD 
+
+DB::select()
+DB::insert()
+DB::update()
+DB::delete()
+
+DB::table()->get()
+table('shoppers')->select()->get()
+table('shoppers')->selectRaw()->get()
